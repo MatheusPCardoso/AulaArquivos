@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+int contador = 1;
+
+typedef struct registro
+{
+    int id_inscricao;
+    char curso[20];
+    char cpf[15];
+    char dataNascimento[11];
+    char sexo;
+    char email[40];
+    char opcaoQuadro;
+}reg;
+
+int main()
+{
+    FILE *arq1;
+    FILE *arq2;
+
+    char file1[50];
+    char file2[50];
+
+    arq1 = fopen(file1, "r");
+    arq2 = fopen(file2, "w");
+    reg x;
+    reg aux;
+    fseek(arq1,0,SEEK_END);
+    int regs = ftell(arq1)/sizeof(reg);
+
+
+    rewind(arq1);
+
+    if(arq1 || arq2){
+        for(int i = 1; regs >= i;i++)
+        {
+            fseek(arq1,i * sizeof(reg), SEEK_SET);
+            fread(&x,sizeof(reg),1,arq1);
+
+            fseek(arq2,contador * sizeof(reg), SEEK_SET);
+            fread(&aux, sizeof(reg),1,arq2);
+            for(int j = contador; x.cpf <= aux.cpf;j++)
+            {
+                if(x.cpf != aux.cpf)
+                {
+                    fseek(arq2,j * sizeof(reg), SEEK_SET);
+                    fread(&aux, sizeof(reg),1,arq2);
+                    
+                }else{
+                    j = contador;
+                    cout << x.email;
+                }
+            }
+        }
+    }else{
+        cout << "Nao foi possivel achar o arquivo";
+    }
+
+    fclose(arq1);
+    fclose(arq2);
+
+    return 0;
+}

@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char **argv)
+{
+
+    int numLinha = 1, numPalavra = 0, novaPalavra = 0;
+
+    char *nomeArquivo;
+
+    char *ptrVoid;
+
+    FILE *file = fopen(argv[1],"r");
+
+        if(file){
+            char pont = fgetc(file);
+            while( pont != EOF){
+                if((pont != '\n') && (pont!=' ') && (!novaPalavra)){
+                    novaPalavra = 1;
+                    numPalavra++;
+                }
+                if((pont == '\n') || (pont == ' ') && (novaPalavra)){
+                    novaPalavra = 0;
+                }
+                if(pont == '\n'){
+                    numLinha++;
+                }
+                pont = fgetc(file);
+            }
+            cout << "\nNumero de linhas e igual a: " << numLinha << "\nNumero de palavras e igual a: " << numPalavra << "\n\n";
+        }
+        else{
+            cout << "Não foi possivel achar o arquivo";
+        }
+
+        getchar();
+
+        fclose(file);
+        return 0;
+}

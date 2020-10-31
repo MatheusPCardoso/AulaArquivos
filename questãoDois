@@ -29,7 +29,7 @@ int main()
             rewind(arq1);
                 
                 if(arq1 || arq2){
-                    for(int i = 1; regs >= i;i++)
+                    for(int i = 1; regs > i;i++)
                     {
                         fseek(arq1,i * sizeof(reg), SEEK_SET);
                         fread(&x,sizeof(reg),1,arq1);

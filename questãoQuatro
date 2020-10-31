@@ -1,0 +1,12 @@
+O método de ordenação externa consiste em intercalar dois ou mais blocos, gerando apenas um bloco ordenado. A intercalação é utilizada como uma
+operação auxiliar na ordenação.
+
+A estratégia utilizada consiste em:
+
+1: Quebrar o arquivo em blocos do tamanho da memória interna disponivel
+
+2: Ordenar cada bloco na memória interna
+
+3: Intercalar cada bloco ordenado passando várias vezes sobre o arquivo
+
+4: A cada passagem são gerados blocos ordenados cada vez maiores.

@@ -27,27 +27,34 @@ int main()
             int regs = ftell(arq1)/sizeof(reg);
 
             rewind(arq1);
-
-                for(int i = 1; regs >= i;i++)
-                {
-                    fseek(arq1,i * sizeof(reg), SEEK_SET);
-                    fread(&x,sizeof(reg),1,arq1);
-                    fseek(arq1, i+1 * sizeof(reg), SEEK_SET);
-                    fread(&aux, sizeof(reg),1,arq1);
-
-                    if(x.cpf == aux.cpf)
+                
+                if(arq1 || arq2){
+                    for(int i = 1; regs >= i;i++)
                     {
-                        if(x.id_inscricao > aux.id_inscricao)
-                        {
-                            fwrite(&x,sizeof(reg),1,arq2);
-                        }
-                        else
-                        {
-                            fwrite(&aux,sizeof(reg),1, arq2);
-                        }
+                        fseek(arq1,i * sizeof(reg), SEEK_SET);
+                        fread(&x,sizeof(reg),1,arq1);
+                        fseek(arq1, i+1 * sizeof(reg), SEEK_SET);
+                        fread(&aux, sizeof(reg),1,arq1);
 
+                        if(x.cpf == aux.cpf)
+                        {
+                            if(x.id_inscricao > aux.id_inscricao)
+                            {
+                                fwrite(&x,sizeof(reg),1,arq2);
+                            }
+                            else
+                            {
+                                fwrite(&aux,sizeof(reg),1, arq2);
+                            }
+
+                        }
                     }
-                }
+               }else
+               {
+                    cout << "Nao foi possivel achar o arquivo";
+               }
+    
+    
     fclose(arq1);
     fclose(arq2);
     return 0;

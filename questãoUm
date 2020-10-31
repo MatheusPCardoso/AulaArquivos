@@ -33,7 +33,7 @@ int main(int argc, char **argv)
             cout << "\nNumero de linhas e igual a: " << numLinha << "\nNumero de palavras e igual a: " << numPalavra << "\n\n";
         }
         else{
-            cout << "Não foi possivel achar o arquivo";
+            cout << "Nao foi possivel achar o arquivo";
         }
 
         getchar();

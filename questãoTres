@@ -50,7 +50,7 @@ int main()
                     fread(&aux, sizeof(reg),1,arq2);
                     
                 }else{
-                    contador = j;
+                    contador = j+ 1;
                     cout << x.email;
                 }
             }
